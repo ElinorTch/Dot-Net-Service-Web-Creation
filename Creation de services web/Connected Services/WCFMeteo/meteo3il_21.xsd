@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WcfService1" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WcfService1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="MeteoData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="d_PrecJour" type="xs:double" />
+      <xs:element minOccurs="0" name="d_Pres" type="xs:double" />
+      <xs:element minOccurs="0" name="d_Temp" type="xs:double" />
+      <xs:element minOccurs="0" name="d_TempPR" type="xs:double" />
+      <xs:element minOccurs="0" name="d_TempR" type="xs:double" />
+      <xs:element minOccurs="0" name="d_VentDir" type="xs:double" />
+      <xs:element minOccurs="0" name="d_VentVit" type="xs:double" />
+      <xs:element minOccurs="0" name="dt_Releve" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="i_Hum" type="xs:int" />
+      <xs:element minOccurs="0" name="s_Return" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="s_VentDirStr" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MeteoData" nillable="true" type="tns:MeteoData" />
+</xs:schema>

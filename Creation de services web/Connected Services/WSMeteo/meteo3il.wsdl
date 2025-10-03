@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Notice">
+        <s:complexType />
+      </s:element>
+      <s:element name="NoticeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NoticeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_Value">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="i_NumValue" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_ValueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_ValueResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="s_DateValue" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="s_DescValue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_ValueByDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="i_NumValue" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="s_DateValueIn" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_ValueByDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_ValueByDateResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="s_DateValueOut" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="s_DescValue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_ValueByPeriod">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="i_NumValue" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="s_DateValue1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="s_DateValue2" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_ValueByPeriodResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_ValueByPeriodResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="i_Count" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="s_DescValue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="NoticeSoapIn">
+    <wsdl:part name="parameters" element="tns:Notice" />
+  </wsdl:message>
+  <wsdl:message name="NoticeSoapOut">
+    <wsdl:part name="parameters" element="tns:NoticeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_ValueSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_Value" />
+  </wsdl:message>
+  <wsdl:message name="Get_ValueSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_ValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_ValueByDateSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_ValueByDate" />
+  </wsdl:message>
+  <wsdl:message name="Get_ValueByDateSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_ValueByDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_ValueByPeriodSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_ValueByPeriod" />
+  </wsdl:message>
+  <wsdl:message name="Get_ValueByPeriodSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_ValueByPeriodResponse" />
+  </wsdl:message>
+  <wsdl:message name="NoticeHttpGetIn" />
+  <wsdl:message name="NoticeHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="NoticeHttpPostIn" />
+  <wsdl:message name="NoticeHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="meteo3ilSoap">
+    <wsdl:operation name="Notice">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Notice</wsdl:documentation>
+      <wsdl:input message="tns:NoticeSoapIn" />
+      <wsdl:output message="tns:NoticeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_Value">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">string Get_Value(int, out string, out string) renvoie la dernière mesure de la variable définie par le premier paramètre  (1=Température °C, 2=Pression hPa, 3=HumiditéRelative %, 4=VitesseVent km/h, 5=DirectionVent 0à360°, 6=DirectionVentEnLettre NNW WSW °,7=CumulPrecipitationJour en mm, 8=TempératureRessentie °C, 9=TempératurePointDeRosée °C), le 2° paramètre contenant la date de la mesure (chaine au format dd/mm/aaaa hh:mm:ss), le 3° paramètre une mini description de la valeur, la valeur retournée est une chaîne de caractère contenant la valeur ou Error</wsdl:documentation>
+      <wsdl:input message="tns:Get_ValueSoapIn" />
+      <wsdl:output message="tns:Get_ValueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_ValueByDate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">string Get_ValueByDate(int, string, out string, out string) renvoie la mesure de la variable définie par le premier paramètre  (1=Température °C, 2=Pression hPa, 3=HumiditéRelative %, 4=VitesseVent km/h, 5=DirectionVent 0à360°, 6=DirectionVentEnLettre NNW WSW °,7=CumulPrecipitationJour en mm, 8=TempératureRessentie °C, 9=TempératurePointDeRosée °C), à la date la plus proche de celle passée en parammètre (chaine au format dd/mm/aaaa hh:mm),le 3° paramètre contenant la date de la mesure (chaine au format dd/mm/aaaa hh:mm:ss), le 4° paramètre une mini description de la valeur, la valeur retournée est une chaîne de caractère contenant la valeur ou Error</wsdl:documentation>
+      <wsdl:input message="tns:Get_ValueByDateSoapIn" />
+      <wsdl:output message="tns:Get_ValueByDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_ValueByPeriod">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">DataSet Get_ValueByPeriod(int, string, string, out int, out string) revoie un DataSet avec les mesures de la variable définie par le premier paramètre  (1=Température °C, 2=Pression hPa, 3=HumiditéRelative %, 4=VitesseVent km/h, 5=DirectionVent 0à360°, 6=DirectionVentEnLettre NNW WSW °,7=CumulPrecipitationJour en mm, 8=TempératureRessentie °C, 9=TempératurePointDeRosée °C), entre les dates passée en 2° et 3° parammètre (chaine au format dd/mm/aaaa hh:mm),le 4° paramètre retourne le nombre de mesure disponible dans le dataset, la 5° paramètre retourne une mini description de la mesure retournée ou Error</wsdl:documentation>
+      <wsdl:input message="tns:Get_ValueByPeriodSoapIn" />
+      <wsdl:output message="tns:Get_ValueByPeriodSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="meteo3ilHttpGet">
+    <wsdl:operation name="Notice">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Notice</wsdl:documentation>
+      <wsdl:input message="tns:NoticeHttpGetIn" />
+      <wsdl:output message="tns:NoticeHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="meteo3ilHttpPost">
+    <wsdl:operation name="Notice">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Notice</wsdl:documentation>
+      <wsdl:input message="tns:NoticeHttpPostIn" />
+      <wsdl:output message="tns:NoticeHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="meteo3ilSoap" type="tns:meteo3ilSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Notice">
+      <soap:operation soapAction="http://tempuri.org/Notice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_Value">
+      <soap:operation soapAction="http://tempuri.org/Get_Value" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_ValueByDate">
+      <soap:operation soapAction="http://tempuri.org/Get_ValueByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_ValueByPeriod">
+      <soap:operation soapAction="http://tempuri.org/Get_ValueByPeriod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="meteo3ilSoap12" type="tns:meteo3ilSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Notice">
+      <soap12:operation soapAction="http://tempuri.org/Notice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_Value">
+      <soap12:operation soapAction="http://tempuri.org/Get_Value" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_ValueByDate">
+      <soap12:operation soapAction="http://tempuri.org/Get_ValueByDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_ValueByPeriod">
+      <soap12:operation soapAction="http://tempuri.org/Get_ValueByPeriod" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="meteo3ilHttpGet" type="tns:meteo3ilHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="Notice">
+      <http:operation location="/Notice" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="meteo3ilHttpPost" type="tns:meteo3ilHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="Notice">
+      <http:operation location="/Notice" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="meteo3il">
+    <wsdl:port name="meteo3ilSoap" binding="tns:meteo3ilSoap">
+      <soap:address location="http://www.meteoservice.lab3il.fr/meteo3il.asmx" />
+    </wsdl:port>
+    <wsdl:port name="meteo3ilSoap12" binding="tns:meteo3ilSoap12">
+      <soap12:address location="http://www.meteoservice.lab3il.fr/meteo3il.asmx" />
+    </wsdl:port>
+    <wsdl:port name="meteo3ilHttpGet" binding="tns:meteo3ilHttpGet">
+      <http:address location="http://www.meteoservice.lab3il.fr/meteo3il.asmx" />
+    </wsdl:port>
+    <wsdl:port name="meteo3ilHttpPost" binding="tns:meteo3ilHttpPost">
+      <http:address location="http://www.meteoservice.lab3il.fr/meteo3il.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

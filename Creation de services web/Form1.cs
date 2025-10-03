@@ -16,5 +16,20 @@ namespace Creation_de_services_web
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            WSMeteo.meteo3ilSoapClient soapClient = new WSMeteo.meteo3ilSoapClient("meteo3ilSoap");
+            String date = "";
+            String description = "";
+            String temperature = soapClient.Get_Value(1, out date, out description);
+            textBox1.Text = "Temperature : " + temperature + " °C mesuree le : " + date;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            WCFMeteo.Service1Client sr = new WCFMeteo.Service1Client();
+
+        }
     }
 }
